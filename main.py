@@ -1,16 +1,8 @@
 import time
 import yaml
+import os
 from mail import SendEmail
 from icbc import Location, ICBC
-
-
-ICBC_keyword = "xxx"
-ICBC_last_name = "xxx"
-ICBC_num = "xxx"
-
-mail_receiver_address = "xxx@gmail.com"
-mail_sender_address = "xxx@qq.com"
-mail_sender_pass = "xxx"
 
 
 class Config:
@@ -26,13 +18,13 @@ class Config:
 
 
 def send_to_mail(content):
-    SendEmail(content, mail_sender_address, mail_sender_pass, mail_receiver_address)
+    SendEmail(content, os.environ["MAIL_SENDER_ADDRESS"], os.environ["MAIL_SENDER_PASS"], os.environ["MAIL_RECEIVER_ADDRESS"])
 
 
 def main():
     cfg = Config()
 
-    icbc_cli = ICBC(ICBC_keyword, ICBC_last_name, ICBC_num)
+    icbc_cli = ICBC(os.environ["ICBC_KEYWORD"], os.environ["ICBC_LAST_NAME"], os.environ["ICBC_NUM"])
     icbc_cli.login()
     if cfg.sleep_duration != 0:
         time.sleep(cfg.sleep_duration)
@@ -46,5 +38,6 @@ def main():
         content += f"<li>{appointment}</li>"
     send_to_mail(content)
 
+
 if __name__ == '__main__':
-    send_to_mail("heello test")
+    main()
