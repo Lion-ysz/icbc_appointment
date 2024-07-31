@@ -1,0 +1,10 @@
+start_date: "2024-08-05"
+end_date: "2024-08-20"
+sleep_duration: 5
+Location:
+  -
+      pos_id: "9"
+      exam_type: "5-R-1"
+      exam_date: "2024-08-05"
+      prf_days_of_week: "[0,1,2,3,4,5,6]"
+      prf_parts_of_day: "[0, 1]"
