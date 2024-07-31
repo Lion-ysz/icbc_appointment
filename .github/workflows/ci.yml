@@ -1,8 +1,7 @@
 name: Search ICBC available appointment
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron: '*/30 * * * *' # 每半小时执行一次
 jobs:
   build:
     runs-on: ubuntu-latest
